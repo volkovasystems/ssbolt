@@ -156,3 +156,5 @@ var ssbolt = function ssbolt( middleware, name ){
 
 	return middleware;
 };
+
+module.exports = ssbolt;
