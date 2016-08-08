@@ -1,0 +1,29 @@
+{
+  "name": "ssbolt",
+  "version": "0.0.0",
+  "description": "Handles error in requests before it propagates.",
+  "main": "ssbolt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/volkovasystems/ssbolt.git"
+  },
+  "keywords": [
+    "error",
+    "middleware",
+    "ssbolt"
+  ],
+  "author": "Richeve S. Bebedor <richeve.bebedor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/volkovasystems/ssbolt/issues"
+  },
+  "homepage": "https://github.com/volkovasystems/ssbolt#readme",
+  "dependencies": {
+    "exorcise": "0.0.0",
+    "olivant": "^0.6.1",
+    "raze": "0.0.5"
+  }
+}
