@@ -48,16 +48,20 @@
 
 	@include:
 		{
+			"called": "called",
 			"exorcise": "exorcise",
 			"Olivant": "olivant",
-			"raze": "raze"
+			"raze": "raze",
+			"snapd": "snapd"
 		}
 	@end-include
 */
 
+var called = require( "called" );
 var exorcise = require( "exorcise" );
 var Olivant = require( "olivant" );
 var raze = require( "raze" );
+var snapd = require( "snapd" );
 
 var ssbolt = function ssbolt( middleware, name ){
 	/*;
@@ -103,12 +107,22 @@ var ssbolt = function ssbolt( middleware, name ){
 	}
 
 	middleware.use( function onRequest( request, response, next ){
+		var cleanUp = called( function cleanUp( ){
+			snapd( function cleanThen( ){
+				request.removeAllListeners( );
+
+				response.removeAllListeners( );
+			}, 1000 );
+		} );
+
 		request.once( "error",
 			function onError( ){
 				Issue( name, "request", arguments, request )
 					.silence( )
 					.report( )
 					.prompt( );
+
+				cleanUp( );
 			} );
 
 		response.once( "error",
@@ -117,7 +131,13 @@ var ssbolt = function ssbolt( middleware, name ){
 					.silence( )
 					.report( )
 					.prompt( );
+
+				cleanUp( );
 			} );
+
+		response.once( "close", cleanUp );
+
+		response.once( "finish", cleanUp );
 
 		next( );
 	} );

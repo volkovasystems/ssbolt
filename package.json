@@ -1,6 +1,6 @@
 {
   "name": "ssbolt",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Handles error in requests before it propagates.",
   "main": "ssbolt.js",
   "scripts": {
@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/volkovasystems/ssbolt#readme",
   "dependencies": {
+    "called": "0.0.5",
     "exorcise": "0.0.0",
     "olivant": "^0.6.1",
-    "raze": "0.0.5"
+    "raze": "0.0.5",
+    "snapd": "0.0.1"
   }
 }
