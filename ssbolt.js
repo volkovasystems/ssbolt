@@ -43,7 +43,6 @@
 
 	@module-documentation:
 		Catches error on middleware, request, and response.
-
 	@end-module-documentation
 
 	@include:
