@@ -1,6 +1,6 @@
 {
   "name": "ssbolt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Handles error in requests before it propagates.",
   "main": "ssbolt.js",
   "scripts": {

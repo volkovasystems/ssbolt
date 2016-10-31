@@ -58,15 +58,15 @@
 	@end-include
 */
 
-var called = require( "called" );
-var express = require( "express" );
-var exorcise = require( "exorcise" );
-var Olivant = require( "olivant" );
-var optfor = require( "optfor" );
-var raze = require( "raze" );
-var snapd = require( "snapd" );
+const called = require( "called" );
+const express = require( "express" );
+const exorcise = require( "exorcise" );
+const Olivant = require( "olivant" );
+const optfor = require( "optfor" );
+const raze = require( "raze" );
+const snapd = require( "snapd" );
 
-var ssbolt = function ssbolt( middleware, name ){
+const ssbolt = function ssbolt( middleware, name ){
 	/*;
 		@meta-configuration:
 			{
