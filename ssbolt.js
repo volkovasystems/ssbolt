@@ -48,8 +48,10 @@
 	@include:
 		{
 			"called": "called",
+			"express": "express",
 			"exorcise": "exorcise",
 			"Olivant": "olivant",
+			"optfor": "optfor",
 			"raze": "raze",
 			"snapd": "snapd"
 		}
@@ -57,8 +59,10 @@
 */
 
 var called = require( "called" );
+var express = require( "express" );
 var exorcise = require( "exorcise" );
 var Olivant = require( "olivant" );
+var optfor = require( "optfor" );
 var raze = require( "raze" );
 var snapd = require( "snapd" );
 
@@ -66,47 +70,48 @@ var ssbolt = function ssbolt( middleware, name ){
 	/*;
 		@meta-configuration:
 			{
-				"middlware:required": "APP",
+				"middlware:required": [
+					"object",
+					global.APP,
+					express( )
+				],
 				"name": "string"
 			}
 		@end-meta-configuration
 	*/
 
-	middleware = raze( arguments )
-		.filter( function onEachParameter( parameter ){
-			return typeof parameter != "string" &&
-				typeof parameter.use != "function" &&
-				typeof parameter.on != "function" &&
-				typeof parameter.removeAllListeners != "function";
-		} )[ 0 ];
+	middleware = optfor( arguments, function check( parameter ){
+		return ( typeof parameter != STRING &&
+			typeof parameter == FUNCTION &&
+			typeof parameter.use == FUNCTION &&
+			typeof parameter.on == FUNCTION &&
+			typeof parameter.removeAllListeners == FUNCTION );
+	} );
 
-	//: Trying to revert if a global APP is given.
-	middleware = middleware || global.APP;
+	middleware = middleware || global.APP || express( );
 
-	if( typeof middleware.use != "function" &&
-		typeof middleware.on != "function" &&
-		typeof middleware.removeAllListeners != "function" )
+	if( typeof middleware != FUNCTION ||
+		typeof middleware.use != FUNCTION ||
+		typeof middleware.on != FUNCTION ||
+		typeof middleware.removeAllListeners != FUNCTION )
 	{
 		Fatal( "invalid middleware" );
 
 		return;
 	}
 
-	name = raze( arguments )
-		.filter( function onEachParameter( parameter ){
-			return typeof parameter == "string";
-		} )[ 0 ];
+	name = optfor( arguments, STRING );
 
 	name = name || "main";
 
-	if( typeof name != "string" ){
+	if( typeof name != STRING ){
 		Fatal( "invalid name" );
 
 		return;
 	}
 
 	middleware.use( function onRequest( request, response, next ){
-		var cleanUp = called( function cleanUp( ){
+		let cleanUp = called( function cleanUp( ){
 			snapd( function cleanThen( ){
 				request.removeAllListeners( );
 

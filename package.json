@@ -1,6 +1,6 @@
 {
   "name": "ssbolt",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "Handles error in requests before it propagates.",
   "main": "ssbolt.js",
   "scripts": {
@@ -24,7 +24,9 @@
   "dependencies": {
     "called": "^0.1.2",
     "exorcise": "0.0.2",
-    "olivant": "^0.8.7",
+    "express": "^4.14.0",
+    "olivant": "^0.8.8",
+    "optfor": "^0.2.0",
     "raze": "0.0.8",
     "snapd": "^0.1.0"
   }
