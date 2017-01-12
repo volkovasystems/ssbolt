@@ -5,7 +5,7 @@
 		The MIT License (MIT)
 		@mit-license
 
-		Copyright (@c) 2016 Richeve Siodina Bebedor
+		Copyright (@c) 2017 Richeve Siodina Bebedor
 		@email: richeve.bebedor@gmail.com
 
 		Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,9 @@
 			"file": "ssbolt.js",
 			"module": "ssbolt",
 			"author": "Richeve S. Bebedor",
+			"contributors": [
+				"John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
+			],
 			"eMail": "richeve.bebedor@gmail.com",
 			"repository": "https://github.com/volkovasystems/ssbolt.git",
 			"test": "ssbolt-test.js",
@@ -52,6 +55,7 @@
 			"exorcise": "exorcise",
 			"Olivant": "olivant",
 			"optfor": "optfor",
+			"protype": "protype",
 			"raze": "raze",
 			"snapd": "snapd"
 		}
@@ -63,6 +67,7 @@ const express = require( "express" );
 const exorcise = require( "exorcise" );
 const Olivant = require( "olivant" );
 const optfor = require( "optfor" );
+const protype = require( "protype" );
 const raze = require( "raze" );
 const snapd = require( "snapd" );
 
@@ -81,19 +86,19 @@ const ssbolt = function ssbolt( middleware, name ){
 	*/
 
 	middleware = optfor( arguments, function check( parameter ){
-		return ( typeof parameter != STRING &&
-			typeof parameter == FUNCTION &&
-			typeof parameter.use == FUNCTION &&
-			typeof parameter.on == FUNCTION &&
-			typeof parameter.removeAllListeners == FUNCTION );
+		return ( !protype( parameter, STRING ) &&
+			protype( parameter, FUNCTION ) &&
+			protype( parameter.use, FUNCTION ) &&
+			protype( parameter.on, FUNCTION ) &&
+			protype( parameter.removeAllListeners, FUNCTION ) );
 	} );
 
 	middleware = middleware || global.APP || express( );
 
-	if( typeof middleware != FUNCTION ||
-		typeof middleware.use != FUNCTION ||
-		typeof middleware.on != FUNCTION ||
-		typeof middleware.removeAllListeners != FUNCTION )
+	if( !protype( middleware, FUNCTION ) ||
+		!protype( middleware.use, FUNCTION ) ||
+		!protype( middleware.on, FUNCTION ) ||
+		!protype( middleware.removeAllListeners, FUNCTION ) )
 	{
 		Fatal( "invalid middleware" );
 
@@ -104,7 +109,7 @@ const ssbolt = function ssbolt( middleware, name ){
 
 	name = name || "main";
 
-	if( typeof name != STRING ){
+	if( !protype( name, STRING ) ){
 		Fatal( "invalid name" );
 
 		return;
