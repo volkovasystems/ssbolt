@@ -1,6 +1,6 @@
 {
   "name": "ssbolt",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Handles error in requests before it propagates.",
   "main": "ssbolt.js",
   "scripts": {
@@ -32,6 +32,6 @@
     "optfor": "^0.6.0",
     "protype": "^0.8.0",
     "raze": "^0.6.0",
-    "snapd": "^0.7.0"
+    "snapd": "^0.9.0"
   }
 }
