@@ -51,8 +51,8 @@
 	@include:
 		{
 			"called": "called",
-			"express": "express",
 			"exorcise": "exorcise",
+			"express": "express",
 			"Olivant": "olivant",
 			"optfor": "optfor",
 			"protype": "protype",
@@ -62,10 +62,11 @@
 	@end-include
 */
 
+require( "olivant" );
+
 const called = require( "called" );
-const express = require( "express" );
 const exorcise = require( "exorcise" );
-const Olivant = require( "olivant" );
+const express = require( "express" );
 const optfor = require( "optfor" );
 const protype = require( "protype" );
 const raze = require( "raze" );
@@ -85,39 +86,20 @@ const ssbolt = function ssbolt( middleware, name ){
 		@end-meta-configuration
 	*/
 
-	middleware = optfor( arguments, function check( parameter ){
-		return ( !protype( parameter, STRING ) &&
-			protype( parameter, FUNCTION ) &&
+	let parameter = raze( arguments );
+
+	middleware = depher( parameter, function check( parameter ){
+		return ( protype( parameter, FUNCTION ) &&
 			protype( parameter.use, FUNCTION ) &&
 			protype( parameter.on, FUNCTION ) &&
 			protype( parameter.removeAllListeners, FUNCTION ) );
-	} );
+	}, global.APP, express( ) );
 
-	middleware = middleware || global.APP || express( );
-
-	if( !protype( middleware, FUNCTION ) ||
-		!protype( middleware.use, FUNCTION ) ||
-		!protype( middleware.on, FUNCTION ) ||
-		!protype( middleware.removeAllListeners, FUNCTION ) )
-	{
-		Fatal( "invalid middleware" );
-
-		return;
-	}
-
-	name = optfor( arguments, STRING );
-
-	name = name || "main";
-
-	if( !protype( name, STRING ) ){
-		Fatal( "invalid name" );
-
-		return;
-	}
+	name = depher( arguments, STRING, "main" );
 
 	middleware.use( function onRequest( request, response, next ){
 		let cleanUp = called( function cleanUp( ){
-			snapd( function cleanThen( ){
+			snapd( function delay( ){
 				request.removeAllListeners( );
 
 				response.removeAllListeners( );
