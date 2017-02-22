@@ -51,6 +51,7 @@
 	@include:
 		{
 			"called": "called",
+			"depher": "depher",
 			"exorcise": "exorcise",
 			"express": "express",
 			"Olivant": "olivant",
@@ -65,6 +66,7 @@
 require( "olivant" );
 
 const called = require( "called" );
+const depher = require( "depher" );
 const exorcise = require( "exorcise" );
 const express = require( "express" );
 const optfor = require( "optfor" );

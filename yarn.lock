@@ -302,6 +302,20 @@ dephall@^0.14.0:
     pyck "^0.15.0"
     zelf "^0.8.0"
 
+dephall@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/dephall/-/dephall-0.15.0.tgz#810e33bbb8c053fdb76dee3011e9ac019350f031"
+  dependencies:
+    arid "^0.15.0"
+    babel-runtime "^6.23.0"
+    doubt "^0.17.0"
+    falze "^0.11.0"
+    harden "^0.16.0"
+    pyck "^0.15.0"
+    raze "^0.19.0"
+    truly "^0.13.0"
+    zelf "^0.8.0"
+
 depher@^0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/depher/-/depher-0.15.0.tgz#d85a6d52027347804c399de024d03c6386cb5f64"
@@ -324,6 +338,18 @@ depher@^0.16.0:
     falze "^0.11.0"
     falzy "^0.13.0"
     harden "^0.16.0"
+    zelf "^0.8.0"
+
+depher@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/depher/-/depher-0.17.0.tgz#c1863ca34f6284dea0bf8f5e284933c545569741"
+  dependencies:
+    babel-runtime "^6.23.0"
+    dephall "^0.15.0"
+    doubt "^0.17.0"
+    falze "^0.11.0"
+    harden "^0.16.0"
+    raze "^0.19.0"
     zelf "^0.8.0"
 
 destroy@~1.0.4:

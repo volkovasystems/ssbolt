@@ -2,4 +2,4 @@
 
 const ssbolt = require( "./ssbolt.js" );
 
-ssbolt( );
+ssbolt( ).listen( 8000 );
